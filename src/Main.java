@@ -5,15 +5,14 @@ public class Main {
     public static void main(String[] args) {
         checkYear();
         downloadApp();
-        generateRandomArray();
-        tack1();
+       deliveryDays(60);
 
     }
 
     public static void checkYear() {
         int[] year = {1725, 1888, 1997, 2000, 2004, 2010, 2021, 3756};
         for (int i = 0; i < year.length; i++) {
-            if (year[i] % 4 == 0) {
+            if ((year[i] % 4 == 0) && (year[i] % 100 == 0) && (year[i] % 400 == 0)){
                 System.out.println(year[i] + " год является високосным");
             } else {
                 System.out.println(year[i] + " год не является високосным");
@@ -44,31 +43,18 @@ public class Main {
         }
     }
 
-    int[] deliveryDistance = generateRandomArray();
-
-    public static int[] generateRandomArray() {
-        java.util.Random random = new java.util.Random();
-        int[] deliveryDistance = new int[4];
-        for (int i = 0; i < deliveryDistance.length; i++) {
-            deliveryDistance[i] = random.nextInt(20) + 40;
-        }
-        return deliveryDistance;
-    }
-
-    public static void tack1() {
-        int deliveryTime = 0;
-        int[] deliveryDistance = generateRandomArray();
-        for (int element : deliveryDistance) {
-            deliveryTime += element;
-        }
-        if (deliveryTime <= 20) {
-            System.out.println("Потребуется дней " + deliveryTime);
+    public static void deliveryDays(int deliveryDistance) {
+        int deliveryDays = 1;;
+        if (deliveryDistance < 20) {
+            System.out.println("Потребуется дней " + deliveryDays);
         } else {
-            if (deliveryTime > 20 && deliveryTime < 60) {
-                System.out.println("Потребуется дней " + deliveryTime );
+            if (deliveryDays > 20 && deliveryDays < 60) {
+                deliveryDays = deliveryDays + 1;
+                System.out.println("Потребуется дней " + deliveryDays);
             } else {
-                if (deliveryTime > 60) {
-                    System.out.println("Потребуется дней " + deliveryTime);
+                if (deliveryDays > 60) {
+                    deliveryDays = deliveryDays + 2;
+                    System.out.println("Потребуется дней " + deliveryDays);
                 }
             }
         }
